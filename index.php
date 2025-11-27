@@ -12,29 +12,45 @@ if(isset($_POST['login'])) {
     if ($data) {
         $_SESSION['login'] = $user;
         header("Location: dashboard.php");
+        exit;
     } else {
         $error = "Username atau Password salah!";
     }
 }
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Bridgestone</title>
+
+    <!-- PENTING: Linknya harus benar -->
+    <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
-<div class="login-box">
-    <h2>Login</h2>
+<div class="container">
+    <div class="card">
 
-    <?php if(isset($error)) echo "<p style='color:red'>$error</p>"; ?>
+        <div class="logo-section">
+            <img src="assets/LogoPT.BRIDGESTONE.png" alt="Logo">
+            <p>PT. BRIDGESTONE KALIMANTAN PLANTATION</p>
+        </div>
 
-    <form method="POST">
-        <input type="text" name="username" placeholder="Username" required><br><br>
-        <input type="password" name="password" placeholder="Password" required><br><br>
-        <button name="login">Login</button>
-    </form>
+        <form method="POST">
+            <div class="form-section">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit" name="login" class="btn">LOGIN</button>
+
+                <?php if(!empty($error)) { ?>
+                    <p class="error"><?= $error; ?></p>
+                <?php } ?>
+            </div>
+        </form>
+
+    </div>
 </div>
 
 </body>
