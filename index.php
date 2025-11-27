@@ -25,7 +25,6 @@ if(isset($_POST['login'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Bridgestone</title>
 
-    <!-- PENTING: Linknya harus benar -->
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -35,21 +34,25 @@ if(isset($_POST['login'])) {
 
         <div class="logo-section">
             <img src="assets/LogoPT.BRIDGESTONE.png" alt="Logo">
-            <p>PT. BRIDGESTONE KALIMANTAN PLANTATION</p>
         </div>
 
-        <form method="POST">
-            <div class="form-section">
-                <input type="text" name="username" placeholder="Username" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <button type="submit" name="login" class="btn">LOGIN</button>
+        <form method="POST" autocomplete="off">
 
-                <?php if(!empty($error)) { ?>
-                    <p class="error"><?= $error; ?></p>
-                <?php } ?>
-            </div>
-        </form>
+        <!-- Fake fields untuk menipu autofill browser -->
+        <input type="text" name="fake_username" style="display:none" autocomplete="username">
+        <input type="password" name="fake_password" style="display:none" autocomplete="new-password">
 
+        <div class="form-section">
+            <input type="text" name="username" placeholder="Username" autocomplete="new-password" required>
+            <input type="password" name="password" placeholder="Password" autocomplete="new-password" required>
+
+            <button type="submit" name="login" class="btn">LOGIN</button>
+
+            <?php if(!empty($error)) { ?>
+                <p class="error"><?= $error; ?></p>
+            <?php } ?>
+        </div>
+    </form>
     </div>
 </div>
 
