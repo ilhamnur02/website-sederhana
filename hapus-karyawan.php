@@ -54,7 +54,7 @@ if (isset($_POST['hapus'])) {
         <button type="submit" name="hapus" class="btn-hapus">HAPUS</button>
     </form>
 
-    <a href="karyawan.php" class="back-link">← Kembali</a>
+    <a href="karyawan.php" class="back-link">Kembali</a>
 </div>
 </body>
 </html>

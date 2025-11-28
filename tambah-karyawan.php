@@ -45,7 +45,7 @@ if (isset($_POST['submit'])) {
         <button type="submit" name="submit" class="btn-submit">SIMPAN</button>
     </form>
 
-    <a href="karyawan.php" class="back-link">← Kembali</a>
+    <a href="karyawan.php" class="back-link">Kembali</a>
 </div>
 
 </body>

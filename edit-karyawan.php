@@ -54,10 +54,10 @@ if (isset($_POST['submit'])) {
         <label>Alamat</label>
         <textarea name="alamat" rows="3" required><?= $row['alamat']; ?></textarea>
 
-        <button type="submit" name="submit" class="btn-submit">UPDATE</button>
+        <button type="submit" name="submit" class="btn-submit">EDIT</button>
     </form>
 
-    <a href="karyawan.php" class="back-link">← Kembali</a>
+    <a href="karyawan.php" class="back-link">Kembali</a>
 </div>
 
 </body>
