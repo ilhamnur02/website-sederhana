@@ -1,14 +1,16 @@
 <?php 
 include 'config/koneksi.php';
 
-// Ambil ID dari URL
 $id = $_GET['id'];
 
-// Ambil data karyawan berdasarkan ID
 $data = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id='$id'");
 $row = mysqli_fetch_assoc($data);
 
-// Jika form disubmit
+if (!$row) {
+    echo "<script>alert('Data tidak ditemukan!'); window.location='karyawan.php';</script>";
+    exit;
+}
+
 if (isset($_POST['submit'])) {
     $nama = $_POST['nama'];
     $jabatan = $_POST['jabatan'];
@@ -23,10 +25,15 @@ if (isset($_POST['submit'])) {
     );
 
     if ($update) {
-        header("Location: karyawan.php");
+        echo "<script>
+                alert('Edit Data Berhasil!');
+                setTimeout(function(){
+                    window.location = 'karyawan.php';
+                }, 800);
+              </script>";
         exit;
     } else {
-        echo "Gagal mengupdate data!";
+        echo "<script>alert('Gagal mengedit data!');</script>";
     }
 }
 ?>

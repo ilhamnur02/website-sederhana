@@ -13,6 +13,7 @@ if(!isset($_SESSION['login'])){
     <title>Data Karyawan</title>
     <link rel="stylesheet" href="assets/dashboard.css">
     <link rel="stylesheet" href="assets/karyawan.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
@@ -34,10 +35,6 @@ if(!isset($_SESSION['login'])){
         <i class="fas fa-calendar-check icon"></i> Data Absensi
         </li>
 
-        <li class="menu-item" data-page="laporan.php" onclick="window.location='laporan.php'">
-        <i class="fas fa-file-alt icon"></i> Laporan
-        </li>
-
         <li class="menu-item" data-page="settings.php" onclick="window.location='settings.php'">
         <i class="fas fa-cog icon"></i> Settings
         </li>
@@ -55,43 +52,47 @@ if(!isset($_SESSION['login'])){
         <div class="content-box">
 
         <div class="header-action">
-        <h2>Daftar Karyawan</h2>
-        <a href="tambah-karyawan.php" class="btn-tambah">+ Tambah Karyawan</a>
+            <h2>Daftar Karyawan</h2>
+            <a href="tambah-karyawan.php" class="btn-tambah">+ Tambah Karyawan</a>
         </div>
 
+        <div class="table-wrapper">
         <table class="table-karyawan">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Nama</th>
-                <th>Jabatan</th>
-                <th>Alamat</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        
-        <?php
-            include "config/koneksi.php";
-            $sintaks = mysqli_query($koneksi, "SELECT * FROM karyawan");
-            $no = 1;
-            while ($data = mysqli_fetch_array($sintaks)) {
-            ?>
-            <tr>
-                <td><?php echo $no++ ?></td>
-                <td><?php echo $data['nama']; ?></td>
-                <td><?php echo $data['jabatan']; ?></td>
-                <td><?php echo $data['alamat']; ?></td>
-                <td class="action-links">
-                    <a href="edit-karyawan.php?id=<?php echo $data['id']; ?>" class="btn-edit">Edit</a>
-                    <a href="hapus-karyawan.php?id=<?php echo $data['id']; ?>" class="btn-hapus">Hapus</a>
-                </td>
-            </tr>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Jabatan</th>
+                    <th>Alamat</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+
+            <tbody>
             <?php
-            }
+                include "config/koneksi.php";
+                $sintaks = mysqli_query($koneksi, "SELECT * FROM karyawan");
+                $no = 1;
+                while ($data = mysqli_fetch_array($sintaks)) {
             ?>
+                <tr>
+                    <td><?= $no++; ?></td>
+                    <td><?= $data['nama']; ?></td>
+                    <td><?= $data['jabatan']; ?></td>
+                    <td><?= $data['alamat']; ?></td>
+                    <td class="action-links">
+                        <a href="edit-karyawan.php?id=<?= $data['id']; ?>" class="btn-edit">Edit</a>
+                        <a href="hapus-karyawan.php?id=<?= $data['id']; ?>" class="btn-hapus">Hapus</a>
+                    </td>
+                </tr>
+            <?php } ?>
+            </tbody>
         </table>
         </div>
-    </main>
+
+        </div>
+</main>
+
 </body>
 <script src="assets/script.js"></script>
 </html>

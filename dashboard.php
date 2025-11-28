@@ -12,6 +12,7 @@ if(!isset($_SESSION['login'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="assets/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
@@ -33,10 +34,6 @@ if(!isset($_SESSION['login'])){
         <i class="fas fa-calendar-check icon"></i> Data Absensi
         </li>
 
-        <li class="menu-item" data-page="laporan.php" onclick="window.location='laporan.php'">
-        <i class="fas fa-file-alt icon"></i> Laporan
-        </li>
-
         <li class="menu-item" data-page="settings.php" onclick="window.location='settings.php'">
         <i class="fas fa-cog icon"></i> Settings
         </li>
@@ -53,25 +50,55 @@ if(!isset($_SESSION['login'])){
 
         <div class="cards">
             <div class="card">
-                <h3>Total Users</h3>
-                <p class="value">2,464</p>
+                <h3>Total Karyawan</h3>
+                <p class="value">185</p>
             </div>
 
             <div class="card">
-                <h3>New Users</h3>
-                <p class="value">1,899</p>
+                <h3>Hadir Hari Ini</h3>
+                <p class="value">172</p>
             </div>
 
             <div class="card">
-                <h3>Total Revenue</h3>
-                <p class="value">$24,139</p>
+                <h3>Izin / Sakit</h3>
+                <p class="value">10</p>
+            </div>
+
+            <div class="card">
+                <h3>Tanpa Keterangan</h3>
+                <p class="value">3</p>
             </div>
         </div>
 
+        <!-- ROW KE-2 -->
+        <div class="cards">
+            <div class="card">
+                <h3>Mesin Aktif</h3>
+                <p class="value">24 / 30</p>
+            </div>
+
+            <div class="card">
+                <h3>Produksi Hari Ini</h3>
+                <p class="value">12,450 Unit</p>
+            </div>
+
+            <div class="card">
+                <h3>Tingkat Keamanan (K3)</h3>
+                <p class="value">Aman</p>
+            </div>
+
+            <div class="card">
+                <h3>Laporan Masuk</h3>
+                <p class="value">5</p>
+            </div>
+        </div>
+
+        <!-- BIG CONTENT BOX BISA UNTUK GRAFIK -->
         <div class="content-box">
-            <!-- Tempat grafik atau konten lainnya -->
+            <h2 class="content-title">Grafik Produktivitas Mingguan</h2>
+            <p style="margin-top: 10px; color:#666;">(Grafik dapat ditambahkan nanti)</p>
         </div>
-    </main>
+</main>
 
 </body>
 <script src="assets/script.js"></script>

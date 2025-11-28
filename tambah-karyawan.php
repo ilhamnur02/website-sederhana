@@ -1,7 +1,6 @@
 <?php
 include 'config/koneksi.php';
 
-// Jika tombol submit ditekan
 if (isset($_POST['submit'])) {
     $nama = $_POST['nama'];
     $jabatan = $_POST['jabatan'];
@@ -10,10 +9,15 @@ if (isset($_POST['submit'])) {
     $query = mysqli_query($koneksi, "INSERT INTO karyawan (nama, jabatan, alamat) VALUES ('$nama', '$jabatan', '$alamat')");
 
     if ($query) {
-        header("Location: karyawan.php");
+        echo "<script>
+                alert('Tambah Data Berhasil!');
+                setTimeout(function(){
+                    window.location = 'karyawan.php';
+                }, 800);
+              </script>";
         exit;
     } else {
-        echo "Gagal menambah data!";
+        echo "<script>alert('Gagal menambah data!');</script>";
     }
 }
 ?>

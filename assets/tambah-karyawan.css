@@ -1,66 +1,86 @@
-body {
-    font-family: Arial, sans-serif;
-    background: #f2f2f2;
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif; /* FONT SAMA UNTUK SEMUA */
 }
 
-/* Box Utama */
+/* Centering halaman */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f2f2f2;
+}
+
+/* Box Form */
 .form-container {
     width: 450px;
     background: #ffffff;
-    margin: 60px auto;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.1);
 }
 
-h2 {
+/* Judul */
+.form-container h2 {
     text-align: center;
     margin-bottom: 20px;
     font-size: 22px;
     font-weight: bold;
 }
 
-/* Label */
-label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 6px;
-    margin-top: 12px;
+/* Tabel Input */
+.form-table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
-/* Input */
+.form-table td {
+    padding: 10px 0;        /* JARAK SERAGAM */
+    vertical-align: middle; /* Biar tengah */
+}
+
+label {
+    font-weight: bold;
+    font-size: 15px;        /* Sama dengan input */
+    display: block;
+    padding-top: 4px;
+}
+
+/* Input & Textarea */
 input[type="text"],
 textarea {
     width: 100%;
     padding: 10px;
     border-radius: 6px;
     border: 1px solid #ccc;
-    margin-top: 3px;
     font-size: 15px;
 }
 
 /* Tombol Submit */
 .btn-submit {
     width: 100%;
-    background: #d70000;
-    color: white;
-    border: none;
     padding: 12px;
-    border-radius: 6px;
-    font-size: 16px;
-    font-weight: bold;
     margin-top: 20px;
+    background: #d70000;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
     cursor: pointer;
-    transition: 0.2s;
+
+    /* FONT SAMA DENGAN INPUT */
+    font-size: 15px;      
+    font-weight: bold;
+    transition: 0.25s;
 }
 
 .btn-submit:hover {
     background: #b30000;
 }
 
-/* Tombol kembali */
+/* Link kembali */
 .back-link {
     display: block;
     text-align: center;
