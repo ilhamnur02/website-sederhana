@@ -1,0 +1,81 @@
+/* Box utama */
+.content-box {
+    background: #ffffff;
+    padding: 22px;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Header + tombol tambah */
+.header-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.header-action h2 {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* Tombol tambah - sama tema dengan tombol LOGIN */
+.btn-tambah {
+    background: #0073d7d8;
+    padding: 10px 16px;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.btn-tambah:hover {
+    background: #0073d7;
+}
+
+/* Tabel */
+.table-karyawan {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-karyawan th {
+    text-align: left;
+    background: #f1f1f1;
+    padding: 12px;
+    font-weight: bold;
+}
+
+.table-karyawan td {
+    padding: 12px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+/* Tombol Edit */
+.btn-edit {
+    background: #ffc107d2;
+    padding: 6px 12px;
+    text-decoration: none;
+    border-radius: 5px;
+    color: black;
+}
+
+.btn-edit:hover {
+    background: #ffc107;
+}
+
+/* Tombol Hapus */
+.btn-hapus {
+    background: #d70000;
+    padding: 6px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    margin-left: 6px;
+}
+
+.btn-hapus:hover {
+    background: #b30000;
+}
