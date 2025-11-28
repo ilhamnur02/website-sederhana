@@ -1,11 +1,11 @@
-# Website Sederhana (Project PKL)
+# Website Sederhana (Tugas ke-2)
 
 Project ini adalah website sederhana berbasis PHP, MySQL, HTML, CSS, dan JavaScript.  
 Dibuat menggunakan **Laragon**, **VSCode**, **Git**, dan **Figma**.
 
 ---
 
-## 🚀 Fitur Utama
+## Fitur Utama
 - Login (Validasi sederhana)
 - Dashboard sederhana
 - Logout
@@ -14,7 +14,7 @@ Dibuat menggunakan **Laragon**, **VSCode**, **Git**, dan **Figma**.
 
 ---
 
-## 🗂️ Struktur Folder
+## Struktur Folder
 website-sederhana/
 │── index.php
 │── dashboard.php
@@ -29,7 +29,7 @@ website-sederhana/
   
 ---
 
-## 🗄️ Database
+## Database
 ### **Nama Database:** `website_sederhana`
 
 ### **Tabel: users**
