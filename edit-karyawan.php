@@ -1,10 +1,13 @@
-<?php 
+<?php
 include 'config/koneksi.php';
 
 $id = $_GET['id'];
 
-$data = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id='$id'");
-$row = mysqli_fetch_assoc($data);
+$stmt = $koneksi->prepare("SELECT * FROM karyawan WHERE id = ?");
+$stmt->bind_param("i", $id);
+$stmt->execute();
+$result = $stmt->get_result();
+$row = $result->fetch_assoc();
 
 if (!$row) {
     echo "<script>alert('Data tidak ditemukan!'); window.location='karyawan.php';</script>";
@@ -16,20 +19,13 @@ if (isset($_POST['submit'])) {
     $jabatan = $_POST['jabatan'];
     $alamat = $_POST['alamat'];
 
-    $update = mysqli_query($koneksi, 
-        "UPDATE karyawan SET 
-        nama='$nama', 
-        jabatan='$jabatan', 
-        alamat='$alamat' 
-        WHERE id='$id'"
-    );
+    $stmt = $koneksi->prepare("UPDATE karyawan SET nama=?, jabatan=?, alamat=? WHERE id=?");
+    $stmt->bind_param("sssi", $nama, $jabatan, $alamat, $id);
 
-    if ($update) {
+    if ($stmt->execute()) {
         echo "<script>
                 alert('Edit Data Berhasil!');
-                setTimeout(function(){
-                    window.location = 'karyawan.php';
-                }, 800);
+                setTimeout(function(){ window.location='karyawan.php'; }, 800);
               </script>";
         exit;
     } else {
@@ -50,7 +46,7 @@ if (isset($_POST['submit'])) {
 <div class="form-container">
     <h2>Edit Karyawan</h2>
 
-    <form action="" method="POST">
+    <form action="" method="POST" id="formEdit" onsubmit="return validateKaryawan('formEdit')">
 
         <label>Nama</label>
         <input type="text" name="nama" value="<?= $row['nama']; ?>" required>

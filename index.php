@@ -2,19 +2,37 @@
 session_start();
 include "config/koneksi.php";
 
+$error = "";
+
 if(isset($_POST['login'])) {
     $user = $_POST['username'];
     $pass = $_POST['password'];
 
-    $cek = mysqli_query($koneksi, "SELECT * FROM users WHERE username='$user' AND password='$pass'");
-    $data = mysqli_fetch_assoc($cek);
-
-    if ($data) {
-        $_SESSION['login'] = $user;
-        header("Location: dashboard.php");
-        exit;
+    // Validasi server-side dasar
+    if (empty($user)) {
+        $error = "Username tidak boleh kosong!";
+    } elseif (strlen($pass) < 6) {
+        $error = "Password minimal 6 karakter!";
     } else {
-        $error = "Username atau Password salah!";
+
+        // === LOGIN AMAN DENGAN PREPARED STATEMENT === //
+        $stmt = $koneksi->prepare("SELECT * FROM users WHERE username = ?");
+        $stmt->bind_param("s", $user);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $data = $result->fetch_assoc();
+
+        if ($data) {
+            if (password_verify($pass, $data['password'])) {
+                $_SESSION['login'] = $user;
+                header("Location: dashboard.php");
+                exit;
+            } else {
+                $error = "Password salah!";
+            }
+        } else {
+            $error = "Username tidak ditemukan!";
+        }
     }
 }
 ?>
@@ -36,25 +54,31 @@ if(isset($_POST['login'])) {
             <img src="assets/LogoPT.BRIDGESTONE.png" alt="Logo">
         </div>
 
-        <form method="POST" autocomplete="off">
-
-        <!-- Fake fields untuk menipu autofill browser -->
-        <input type="text" name="fake_username" style="display:none" autocomplete="username">
-        <input type="password" name="fake_password" style="display:none" autocomplete="new-password">
+        <form method="POST" autocomplete="off" onsubmit="return validateLogin()">
 
         <div class="form-section">
-            <input type="text" name="username" placeholder="Username" autocomplete="new-password" required>
-            <input type="password" name="password" placeholder="Password" autocomplete="new-password" required>
 
-            <button type="submit" name="login" class="btn">LOGIN</button>
+        <!-- Tambahkan ID agar JS bisa membaca -->
+        <input type="text" id="username" name="username" placeholder="Username" autocomplete="new-password">
+        <p class="error" id="user-error"></p>
 
-            <?php if(!empty($error)) { ?>
-                <p class="error"><?= $error; ?></p>
-            <?php } ?>
+        <input type="password" id="password" name="password" placeholder="Password" autocomplete="new-password">
+        <p class="error" id="pass-error"></p>
+
+        <button type="submit" name="login" class="btn">LOGIN</button>
+
+        <!-- Tampilkan error login dari PHP -->
+        <?php if(isset($_POST['login']) && !empty($error)) { ?>
+            <p class="error"><?= $error; ?></p>
+        <?php } ?>
+
+
         </div>
-    </form>
+        </form>
+
     </div>
 </div>
 
+<script src="assets/script.js"></script>
 </body>
 </html>

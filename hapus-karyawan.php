@@ -8,28 +8,27 @@ if (!isset($_GET['id'])) {
 
 $id = $_GET['id'];
 
-// Ambil data karyawan untuk ditampilkan sebelum dihapus
-$query = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id = '$id'");
-$data = mysqli_fetch_assoc($query);
+$stmt = $koneksi->prepare("SELECT * FROM karyawan WHERE id=?");
+$stmt->bind_param("i", $id);
+$stmt->execute();
+$data = $stmt->get_result()->fetch_assoc();
 
-// Jika data tidak ditemukan
 if (!$data) {
     echo "<script>alert('Data tidak ditemukan!'); window.location='karyawan.php';</script>";
     exit;
 }
 
-// Jika tombol hapus ditekan
 if (isset($_POST['hapus'])) {
-    mysqli_query($koneksi, "DELETE FROM karyawan WHERE id = '$id'");
+    $stmt = $koneksi->prepare("DELETE FROM karyawan WHERE id=?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+
     echo "<script>
         alert('Data berhasil dihapus!');
-        setTimeout(function(){
-            window.location = 'karyawan.php';
-        }, 800); 
+        setTimeout(function(){ window.location='karyawan.php'; }, 800);
     </script>";
     exit;
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="id">

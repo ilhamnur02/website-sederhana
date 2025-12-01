@@ -1,22 +1,67 @@
-document.addEventListener("DOMContentLoaded", () => {
+function validateLogin() {
+    let userInput = document.querySelector("#username");
+    let passInput = document.querySelector("#password");
 
-    const items = document.querySelectorAll(".menu-item");
+    let user = userInput.value.trim();
+    let pass = passInput.value.trim();
 
-    items.forEach(item => {
-        item.addEventListener("click", () => {
+    let userError = document.querySelector("#user-error");
+    let passError = document.querySelector("#pass-error");
 
-            // Hapus active sebelumnya
-            items.forEach(i => i.classList.remove("active"));
+    // Reset error
+    userError.innerHTML = "";
+    passError.innerHTML = "";
+    userInput.style.border = "2px solid #ccc";
+    passInput.style.border = "2px solid #ccc";
 
-            // Tambah active ke menu yang diklik
-            item.classList.add("active");
-        });
+    // Validasi username kosong
+    if (user === "") {
+        userError.innerHTML = "Username tidak boleh kosong!";
+        userInput.style.border = "2px solid red";
+        return false;
+    }
 
-        // Support touchscreen
-        item.addEventListener("touchstart", () => {
-            items.forEach(i => i.classList.remove("active"));
-            item.classList.add("active");
-        });
-    });
+    // Validasi password minimal 6 karakter
+    if (pass.length < 6) {
+        passError.innerHTML = "Password minimal 6 karakter!";
+        passInput.style.border = "2px solid red";
+        return false;
+    }
 
-});
+    return true;
+}
+
+// === VALIDASI CRUD (Tambah/Edit)
+function validateKaryawan(formId) {
+    let form = document.getElementById(formId);
+    let nama = form.querySelector("input[name='nama']");
+    let jabatan = form.querySelector("input[name='jabatan']");
+    let alamat = form.querySelector("textarea[name='alamat']");
+
+    let valid = true;
+
+    // Reset border
+    nama.style.border = "2px solid #ccc";
+    jabatan.style.border = "2px solid #ccc";
+    alamat.style.border = "2px solid #ccc";
+
+    if (nama.value.trim() === "") {
+        nama.style.border = "2px solid red";
+        valid = false;
+        alert("Nama tidak boleh kosong!");
+    }
+
+    if (jabatan.value.trim() === "") {
+        jabatan.style.border = "2px solid red";
+        valid = false;
+        alert("Jabatan tidak boleh kosong!");
+    }
+
+    if (alamat.value.trim() === "") {
+        alamat.style.border = "2px solid red";
+        valid = false;
+        alert("Alamat tidak boleh kosong!");
+    }
+
+    return valid;
+}

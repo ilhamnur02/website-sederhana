@@ -10,9 +10,9 @@ if(!isset($_SESSION['login'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Karyawan</title>
-    <link rel="stylesheet" href="assets/dashboard.css">
+    <title>Dashboard</title>
     <link rel="stylesheet" href="assets/karyawan.css">
+    <link rel="stylesheet" href="assets/dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
@@ -43,20 +43,21 @@ if(!isset($_SESSION['login'])){
         <i class="fas fa-sign-out-alt icon"></i> Logout
         </li>
         </ul>
-
     </aside>
-
 <main class="main">
-        <h1 class="title">Data Karyawan</h1>
 
-        <div class="content-box">
+    <h1 class="title-page">Data Karyawan</h1>
 
-        <div class="header-action">
+    <div class="card-box">
+
+        <div class="card-header">
             <h2>Daftar Karyawan</h2>
-            <a href="tambah-karyawan.php" class="btn-tambah">+ Tambah Karyawan</a>
+
+            <a href="tambah-karyawan.php" class="btn-tambah">
+                <span class="icon">+</span> Tambah Karyawan
+            </a>
         </div>
 
-        <div class="table-wrapper">
         <table class="table-karyawan">
             <thead>
                 <tr>
@@ -69,28 +70,32 @@ if(!isset($_SESSION['login'])){
             </thead>
 
             <tbody>
-            <?php
+                <?php
                 include "config/koneksi.php";
-                $sintaks = mysqli_query($koneksi, "SELECT * FROM karyawan");
+                
+                $stmt = $koneksi->prepare("SELECT * FROM karyawan");
+                $stmt->execute();
+                $result = $stmt->get_result();
+
                 $no = 1;
-                while ($data = mysqli_fetch_array($sintaks)) {
-            ?>
+                while($data = $result->fetch_assoc()) {
+                ?>
                 <tr>
                     <td><?= $no++; ?></td>
                     <td><?= $data['nama']; ?></td>
                     <td><?= $data['jabatan']; ?></td>
                     <td><?= $data['alamat']; ?></td>
-                    <td class="action-links">
+                    <td>
                         <a href="edit-karyawan.php?id=<?= $data['id']; ?>" class="btn-edit">Edit</a>
                         <a href="hapus-karyawan.php?id=<?= $data['id']; ?>" class="btn-hapus">Hapus</a>
                     </td>
                 </tr>
-            <?php } ?>
+                <?php } ?>
             </tbody>
         </table>
-        </div>
 
-        </div>
+    </div>
+
 </main>
 
 </body>

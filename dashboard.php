@@ -42,7 +42,6 @@ if(!isset($_SESSION['login'])){
         <i class="fas fa-sign-out-alt icon"></i> Logout
         </li>
         </ul>
-
     </aside>
 
 <main class="main">
@@ -70,7 +69,7 @@ if(!isset($_SESSION['login'])){
             </div>
         </div>
 
-        <!-- ROW KE-2 -->
+        <!-- ROW 2 -->
         <div class="cards">
             <div class="card">
                 <h3>Mesin Aktif</h3>
@@ -93,7 +92,7 @@ if(!isset($_SESSION['login'])){
             </div>
         </div>
 
-        <!-- BIG CONTENT BOX BISA UNTUK GRAFIK -->
+        <!-- GRAPH / CONTENT BOX -->
         <div class="content-box">
             <h2 class="content-title">Grafik Produktivitas Mingguan</h2>
             <p style="margin-top: 10px; color:#666;">(Grafik dapat ditambahkan nanti)</p>

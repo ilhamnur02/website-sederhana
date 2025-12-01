@@ -6,16 +6,14 @@ if (isset($_POST['submit'])) {
     $jabatan = $_POST['jabatan'];
     $alamat = $_POST['alamat'];
 
-    $query = mysqli_query($koneksi, "INSERT INTO karyawan (nama, jabatan, alamat) VALUES ('$nama', '$jabatan', '$alamat')");
+    $stmt = $koneksi->prepare("INSERT INTO karyawan (nama, jabatan, alamat) VALUES (?, ?, ?)");
+    $stmt->bind_param("sss", $nama, $jabatan, $alamat);
 
-    if ($query) {
+    if ($stmt->execute()) {
         echo "<script>
                 alert('Tambah Data Berhasil!');
-                setTimeout(function(){
-                    window.location = 'karyawan.php';
-                }, 800);
+                setTimeout(function(){ window.location='karyawan.php'; }, 800);
               </script>";
-        exit;
     } else {
         echo "<script>alert('Gagal menambah data!');</script>";
     }
@@ -35,7 +33,7 @@ if (isset($_POST['submit'])) {
 <div class="form-container">
     <h2>Tambah Karyawan</h2>
 
-    <form action="" method="POST">
+    <form action="" method="POST" id="formTambah" onsubmit="return validateKaryawan('formTambah')">
         
         <label>Nama Lengkap</label>
         <input type="text" name="nama" required>
