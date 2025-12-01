@@ -50,3 +50,29 @@ CREATE TABLE users (
 INSERT INTO users (username, password) VALUES
 ('admin', '12345');
 
+
+-----------------------------------------
+// README Tugas Ke-4 // 
+
+## Fitur Utama
+- Login sistem (dengan hashing password)
+- Dashboard
+- CRUD Data Karyawan
+- Logout
+
+---
+
+## Validasi
+- Username tidak boleh kosong
+- Password minimal 6 karakter
+- Validasi form tambah/edit karyawan
+
+---
+
+## Keamanan
+Fitur keamanan yang sudah diterapkan:
+- Prepared Statements (mencegah SQL Injection)
+- htmlspecialchars untuk mencegah XSS
+- password_hash() dan password_verify()
+- Validasi client-side (JavaScript)
+- Validasi server-side (PHP).
