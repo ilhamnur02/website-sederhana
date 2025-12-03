@@ -78,5 +78,89 @@ Fitur keamanan yang sudah diterapkan:
 - Validasi server-side (PHP).
 
 ----------------------------------------------
+ 
+# README Tugas ke-5
 
+## Fitur yang Tersedia
 
+* **Dashboard** untuk melihat ringkasan data
+* **Data Karyawan** (Tambah, Edit, Hapus)
+* **Data Absensi** (masih kosong)
+* **Settings** (masih kosong)
+* **Logout** (sudah bisa langsung keluar dari Dashboard/ke Halaman Login)
+
+## Cara Install dan Menjalankan Project
+
+### 1. Clone atau Download Project
+
+Download project sebagai ZIP atau clone repository:
+
+```bash
+contoh --> git clone https://github.com/ilhamnur02/repo.git
+```
+
+### 2. Install Dependencies
+
+Jika menggunakan PHP + MySQL dan Laragon:
+
+* Pastikan **Laragon** sudah terinstall
+* Pindahkan folder project ke dalam:
+
+```
+contoh --> D:/Laragon/www/website-sederhana/
+```
+
+### 3. Import Database
+
+* Buka **phpMyAdmin6** melalui menu Laragon → Database
+* Buat database baru
+* Import file SQL dari folder backup (`.sql`)
+
+### 4. Konfigurasi Koneksi Database
+
+Edit file:
+
+```
+contoh --> config/koneksi.php
+```
+
+Sesuaikan dengan:
+
+```php
+$host = 'localhost';
+$user = 'root';
+$pass = '';
+$db   = 'db_website_sederhana';
+```
+
+### 5. Jalankan Project
+
+Akses melalui browser:
+
+```
+http://localhost/website-sederhana/
+```
+
+--- Project siap dijalankan ---
+
+----------------------------------------------
+
+Screenshot final UI :
+
+### Halaman Login
+![image](https://github.com/ilhamnur02/website-sederhana/assets/Login.png)
+
+### Halaman Dashboard
+![image](https://github.com/ilhamnur02/website-sederhana/assets/Dashboard.png)
+
+### Halaman Data Karyawan
+![image](https://github.com/ilhamnur02/website-sederhana/assets/DataKaryawan.png)
+
+### Halaman Tambah Karyawan
+![image](https://github.com/ilhamnur02/website-sederhana/assets/TambahKaryawan.png)
+
+### Halaman Edit Karyawan
+![image](https://github.com/ilhamnur02/website-sederhana/assets/EditKaryawan.png)
+
+### FIGMA
+![image](https://github.com/ilhamnur02/website-sederhana/assets/UI_website-sederhana.png)
