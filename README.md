@@ -54,7 +54,7 @@ INSERT INTO users (username, password) VALUES
 -----------------------------------------
 // README Tugas Ke-4 // 
 
-## Fitur Utama
+# Fitur Utama
 - Login sistem (dengan hashing password)
 - Dashboard
 - CRUD Data Karyawan
@@ -69,10 +69,14 @@ INSERT INTO users (username, password) VALUES
 
 ---
 
-## Keamanan
+### Keamanan
 Fitur keamanan yang sudah diterapkan:
 - Prepared Statements (mencegah SQL Injection)
 - htmlspecialchars untuk mencegah XSS
 - password_hash() dan password_verify()
 - Validasi client-side (JavaScript)
 - Validasi server-side (PHP).
+
+----------------------------------------------
+
+
